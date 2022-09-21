@@ -21,7 +21,7 @@ linters:
     - gocyclo # 检查函数复杂度,超过设定值需要拆分
     - gofmt
     - goimports
-    #- wsl
+    - wsl
     #- errorlint # 强制使用1.13的错误机制
    # 每个linter的定制化选项
 linters-settings:
