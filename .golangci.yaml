@@ -18,15 +18,26 @@ linters:
     - typecheck
     - unused
     # 新增 linter
-    - gocyclo # 检查函数复杂度,超过设定值需要拆分
     - gofmt
     - goimports
-    - wsl
+    - goconst 
+    - cyclop # 圈复杂度
+    #- wsl
     #- errorlint # 强制使用1.13的错误机制
    # 每个linter的定制化选项
 linters-settings:
-  gocyclo:
-    min-complexity: 15
+  
+  cyclop:
+    # The maximal code complexity to report.
+    # Default: 10
+    max-complexity: 15
+    # The maximal average package complexity.
+    # If it's higher than 0.0 (float) the check is enabled
+    # Default: 0.0
+    package-average: 0.0
+    # Should ignore tests.
+    # Default: false
+    skip-tests: true
 
 issues:
 
