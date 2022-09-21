@@ -1,0 +1,34 @@
+# 参考https://golangci-lint.run/usage/configuration/#run-configuration
+# 设置执行时的配置,如并发数,是否跳过测试文件,跳过某些目录等等
+run:
+  timeout: 10m
+  modules-download-mode: readonly
+  tests: false # 不检查测试文件
+# 设置输出的选项,如显示格式等等
+output:
+
+linters:
+  disable-all: true # 设置为全部关闭,只开启我们想要设置的linter
+  enable:
+    - errcheck
+    - gosimple
+    - govet
+    - ineffassign
+    - staticcheck
+    - typecheck
+    - unused
+    # 新增 linter
+    - gocyclo # 检查函数复杂度,超过设定值需要拆分
+    - gofmt
+    - goimports
+    #- wsl
+    #- errorlint # 强制使用1.13的错误机制
+   # 每个linter的定制化选项
+linters-settings:
+  gocyclo:
+    min-complexity: 15
+
+issues:
+
+severity:
+
