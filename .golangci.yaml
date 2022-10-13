@@ -19,14 +19,15 @@ linters:
     - unused
     # 新增 linter
     - gofmt
+    - godot
     - goimports
-    - goconst 
+    - goconst
+    - revive
     - cyclop # 圈复杂度
     #- wsl
     #- errorlint # 强制使用1.13的错误机制
-   # 每个linter的定制化选项
+    # 每个linter的定制化选项
 linters-settings:
-  
   cyclop:
     # The maximal code complexity to report.
     # Default: 10
@@ -39,7 +40,25 @@ linters-settings:
     # Default: false
     skip-tests: true
 
+  godot:
+    # Comments to be checked: `declarations`, `toplevel`, or `all`.
+    # Default: declarations
+    scope: toplevel
+    # List of regexps for excluding particular comment lines from check.
+    # Default: []
+    exclude:
+      # Exclude todo and fixme comments.
+      - "^fixme:"
+      - "^todo:"
+      - "^FIXME:"
+      - "^TODO:"
+    # Check that each sentence ends with a period.
+    # Default: true
+    period: true
+    # Check that each sentence starts with a capital letter.
+    # Default: false
+    capital: true
+
 issues:
 
 severity:
-
