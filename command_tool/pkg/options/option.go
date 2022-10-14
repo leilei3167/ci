@@ -3,10 +3,13 @@ package options
 
 import (
 	"flag"
+	"io"
 	"sync"
 	"time"
 
 	"github.com/AlekSi/pointer"
+	"github.com/leilei3167/ci/command_tool/templates"
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
 
@@ -119,4 +122,31 @@ func (f *ConfigFlags) AddFlags(flags *pflag.FlagSet) {
 			"The interval time between each attempt.",
 		)
 	}
+}
+
+var optionsExample = `
+		# Print flags inherited by all commands
+		iamctl options`
+
+// NewCmdOptions implements the options command.
+// 其执行的就是将全局的flag打印出来.
+func NewCmdOptions(out io.Writer) *cobra.Command {
+	cmd := &cobra.Command{
+		Use:     "options",
+		Short:   "Print the list of flags inherited by all commands",
+		Long:    "Print the list of flags inherited by all commands",
+		Example: optionsExample,
+		Run: func(cmd *cobra.Command, args []string) {
+			_ = cmd.Usage()
+		},
+	}
+
+	// The `options` command needs write its output to the `out` stream
+	// (typically stdout). Without calling SetOutput here, the Usage()
+	// function call will fall back to stderr.
+	cmd.SetOutput(out)
+	// 指定options命令的输出模板
+	templates.UseOptionsTemplates(cmd)
+
+	return cmd
 }

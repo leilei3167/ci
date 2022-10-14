@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"io"
+	"os"
 
 	"github.com/leilei3167/ci/command_tool/cmd/info"
 	"github.com/leilei3167/ci/command_tool/pkg/config"
@@ -15,7 +16,7 @@ import (
 func NewXXXComand(in io.Reader, out, err io.Writer) *cobra.Command {
 	// 1.创建根命令
 	cmds := &cobra.Command{
-		Use:   "XXXctl",                           // 本命令行工具的名字,可设为os.Args[0]
+		Use:   os.Args[0],                         // 本命令行工具的名字,可设为os.Args[0]
 		Short: "XXXctl controls the XXX platform", // 简短介绍
 		Long: `XXXctl controls the XXX platform xxx xxx xxx xxx xxx
 		And xx xxx xxx xxx`, // 长描述需要处理规范//TODO:处理rawString,规范输出
@@ -78,8 +79,9 @@ func NewXXXComand(in io.Reader, out, err io.Writer) *cobra.Command {
 	// TODO:此处修改cmds的展示,替换默认的展示页面,实现分组展示的关键
 	filters := []string{"options"} // 不显示的命令名称
 	templates.ActsAsRootCommand(cmds, filters, groups...)
-	// 添加一些公用的命令(可隐藏)
 
+	// 添加一些公用的命令(可隐藏)
+	cmds.AddCommand(options.NewCmdOptions(ioStreams.Out))
 	return cmds
 }
 
