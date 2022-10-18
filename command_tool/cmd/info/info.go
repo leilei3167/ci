@@ -7,6 +7,7 @@ import (
 	"strconv"
 
 	"github.com/leilei3167/ci/command_tool/pkg/options"
+
 	hoststat "github.com/likexian/host-stat-go"
 	"github.com/marmotedu/component-base/pkg/util/iputil"
 	"github.com/spf13/cobra"
@@ -23,7 +24,7 @@ type Info struct {
 }
 
 // InfoOptions is an options struct to support 'info' sub command.
-type InfoOptions struct {
+type InfoOptions struct { //nolint:revive
 	options.IOStreams
 }
 

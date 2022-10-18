@@ -54,5 +54,4 @@ func TestNew(t *testing.T) {
 		l3 := cache.Len()
 		require.Equal(t, l3, 0)
 	})
-
 }

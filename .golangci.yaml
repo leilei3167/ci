@@ -4,7 +4,7 @@ run:
   timeout: 10m
   modules-download-mode: readonly
   tests: false # 不检查测试文件
-# 设置输出的选项,如显示格式等等
+  # 设置输出的选项,如显示格式等等
 output:
 
 linters:
@@ -18,16 +18,24 @@ linters:
     - typecheck
     - unused
     # 新增 linter
-    - gofmt
-    - godot
-    - goimports
-    - goconst
-    - revive
-    - cyclop # 圈复杂度
-    #- wsl
+    - gofmt # 检查是否经过gofmt格式化
+    - goimports # 检查是否经过goimports格式化
+    - nolintlint # 检查设置了nolint的地方是否添加了原因
+    - gofumpt # 检查是否被gofumpt格式化过
+    - gocritic # 更严格代码检查
+    - cyclop # 代码圈复杂度,最好在10以下
+    - godot # 注释规范
+    #- lll # 单行长度限制
+    - revive # 更严格代码检查
+
+    #- wsl # 强制使用空行
     #- errorlint # 强制使用1.13的错误机制
+
     # 每个linter的定制化选项
 linters-settings:
+  gofumpt:
+    module-path: github.com/leilei3167/ci # 必须设置为go.mod的项目名称,否则将一直报错
+    extra-rules: false
   cyclop:
     # The maximal code complexity to report.
     # Default: 10
@@ -59,20 +67,15 @@ linters-settings:
     # Default: false
     capital: true
 
+  lll:
+    # Max line length, lines longer will be reported.
+    # '\t' is counted as 1 character by default, and can be changed with the tab-width option.
+    # Default: 120.
+    line-length: 140
+    # Tab width in spaces.
+    # Default: 1
+    tab-width: 1
+
 issues:
-  # Fix found issues (if it's supported by the linter)
-  fix: true
+
 severity:
-  # Default value is empty string.
-  # Set the default severity for issues. If severity rules are defined and the issues
-  # do not match or no severity is provided to the rule this will be the default
-  # severity applied. Severities should match the supported severity names of the
-  # selected out format.
-  # - Code climate: https://docs.codeclimate.com/docs/issues#issue-severity
-  # -   Checkstyle: https://checkstyle.sourceforge.io/property_types.html#severity
-  # -       Github: https://help.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-error-message
-  default-severity: error
-  rules:
-    - linters:
-        - dupl
-      severity: info

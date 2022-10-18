@@ -6,6 +6,7 @@ import (
 	"runtime"
 )
 
+//nolint:cyclop
 func HomeDir() string {
 	if runtime.GOOS != "windows" {
 		return os.Getenv("HOME")

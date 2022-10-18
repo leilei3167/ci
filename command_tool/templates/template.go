@@ -34,10 +34,10 @@ const (
 	// 调用外部函数,将 . 作为参数.
 	// $isRootCmd判断当前才command是否是根命令
 	// $rootCmd 返回了当前templates中的根命令
-	//$visibleFlags保存了可见的flag(先将全局flag和命令的flag进行正交,全局flag没有的会显示).
-	//$explicitlyExposedFlags 指定了需要特别展示的有哪些flag
-	//$optionsCmdFor 从当前命令的根命令往下找,最近的具有options命令的路径
-	//$usageLine 当前命令的usage line,如果当前命令有flag并且没有[options]则为其添加.
+	// $visibleFlags保存了可见的flag(先将全局flag和命令的flag进行正交,全局flag没有的会显示).
+	// $explicitlyExposedFlags 指定了需要特别展示的有哪些flag
+	// $optionsCmdFor 从当前命令的根命令往下找,最近的具有options命令的路径
+	// $usageLine 当前命令的usage line,如果当前命令有flag并且没有[options]则为其添加.
 	SectionVars = `{{$isRootCmd := isRootCmd .}}` +
 		`{{$rootCmd := rootCmd .}}` +
 		`{{$visibleFlags := visibleFlags (flagsNotIntersected .LocalFlags .PersistentFlags)}}` +
@@ -45,8 +45,8 @@ const (
 		`{{$optionsCmdFor := optionsCmdFor .}}` +
 		`{{$usageLine := usageLine .}}`
 
-		// 这一部分会判断当前的命令是否有别名,如果有,则输出
-		// 调用的是gt函数,cobra.Gt会比较第一个参数是否大于第二个参数,.Aliases
+	// 这一部分会判断当前的命令是否有别名,如果有,则输出
+	// 调用的是gt函数,cobra.Gt会比较第一个参数是否大于第二个参数,.Aliases.
 	SectionAliases = `{{if gt .Aliases 0}}Aliases:
 {{.NameAndAliases}}
 

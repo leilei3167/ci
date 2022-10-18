@@ -8,6 +8,7 @@ import (
 	"github.com/leilei3167/ci/command_tool/pkg/config"
 	"github.com/leilei3167/ci/command_tool/pkg/options"
 	"github.com/leilei3167/ci/command_tool/templates"
+
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -32,8 +33,9 @@ func NewXXXComand(in io.Reader, out, err io.Writer) *cobra.Command {
 
 	// 2.初始化处理根命令的flagSet
 	globalFlags := cmds.PersistentFlags()
-	// globalFlags.SetNormalizeFunc(func(f *pflag.FlagSet, name string) pflag.NormalizedName { return pflag.NormalizedName("") }) // 设置标志的转换函数,可用于纠错,或者提醒弃用等
-	// globalFlags.SetNormalizeFunc(func(f *pflag.FlagSet, name string) pflag.NormalizedName { return pflag.NormalizedName("") }) // 比如用户可能将-分隔符输入成_,可以通过此函数翻译
+	// globalFlags.SetNormalizeFunc(func(f *pflag.FlagSet, name string) pflag.NormalizedName { return pflag.NormalizedName("") }) //
+	// 设置标志的转换函数,可用于纠错,或者提醒弃用等 globalFlags.SetNormalizeFunc(func(f *pflag.FlagSet, name string)
+	// pflag.NormalizedName { return pflag.NormalizedName("") }) // 比如用户可能将-分隔符输入成_,可以通过此函数翻译
 
 	// 3.向flagSet中添加选项
 	// 3.1 通用的分析选项(pprof)

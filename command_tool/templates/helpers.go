@@ -95,14 +95,14 @@ func (t *templater) cmdGroupsString(c *cobra.Command) string {
 }
 
 func rpad(s string, padding int) string {
-	//%5s:最小宽度为5
-	//%-5s:最小宽度为5,并左对齐
-	//%.5s:最大宽度为5
-	//%5.7:最小宽度为5,最大宽度为7
-	//%-5.7:最小宽度为5,最大宽度为7,左对齐
-	//%5.3s:宽度大于3,截断
-	//%05s:如果宽度小于5,会补零
-	template := fmt.Sprintf("%%-%ds", padding) //%-11s,代表宽度必须为11,不足的会在后面补齐
+	// %5s:最小宽度为5
+	// %-5s:最小宽度为5,并左对齐
+	// %.5s:最大宽度为5
+	// %5.7:最小宽度为5,最大宽度为7
+	// %-5.7:最小宽度为5,最大宽度为7,左对齐
+	// %5.3s:宽度大于3,截断
+	// %05s:如果宽度小于5,会补零
+	template := fmt.Sprintf("%%-%ds", padding) // %-11s,代表宽度必须为11,不足的会在后面补齐
 	// 可以使的短名称命令也对其
 	return fmt.Sprintf(template, s)
 }

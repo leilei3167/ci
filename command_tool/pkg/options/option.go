@@ -7,8 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/AlekSi/pointer"
 	"github.com/leilei3167/ci/command_tool/templates"
+
+	"github.com/AlekSi/pointer"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -50,7 +51,7 @@ type ConfigFlags struct { // 如果是调用SDK的命令行工具,此处可按�
 
 	usePersistentConfig bool
 
-	lock sync.Mutex
+	lock sync.Mutex //nolint:unused
 }
 
 // NewConfigFlags returns ConfigFlags with default values set.

@@ -15,7 +15,7 @@ func LoadConfig(cfg string, defaultName string) {
 	} else {
 		// 未指定,添加几个默认路径去按照默认配置文件名查找
 		viper.AddConfigPath(".")                                          // 1.当前的文件夹
-		viper.AddConfigPath(filepath.Join(HomeDir(), RecommendedHomeDir)) //$HOME/.xxx 文件夹
+		viper.AddConfigPath(filepath.Join(HomeDir(), RecommendedHomeDir)) // $HOME/.xxx 文件夹
 		viper.AddConfigPath("/etc/xxx")
 
 		viper.SetConfigName(defaultName)
