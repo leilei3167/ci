@@ -19,18 +19,18 @@ import (
 
 使用场景:
 	当对象的创建成本比较大，并且同一个类的不同对象间差别不大时（大部分属性值相同），如果对象的属性值需要经过复杂的计算、排序，或者需要从网络、DB等这些慢IO中获取、亦或者或者属性值拥有很深的层级，
-这时就是原型模式发挥作用的地方了。因为对象在内存中复制自己远比每次创建对象时重走一遍上面说的操作要来高效的多
+这时就是原型模式发挥作用的地方了。因为对象在内存中复制自己远比每次创建对象时重走一遍上面说的操作要来高效的多.
 
 */
 
-// Keyword 搜索关键字
+// Keyword 搜索关键字.
 type Keyword struct {
 	word      string
 	visit     int
 	UpdatedAt *time.Time
 }
 
-// Clone 这里使用序列化与反序列化的方式深拷贝
+// Clone 这里使用序列化与反序列化的方式深拷贝.
 func (k *Keyword) Clone() *Keyword {
 	var newKeyword Keyword
 	b, _ := json.Marshal(k)
@@ -38,11 +38,11 @@ func (k *Keyword) Clone() *Keyword {
 	return &newKeyword
 }
 
-// Keywords 关键字 map
+// Keywords 关键字 map.
 type Keywords map[string]*Keyword
 
 // Clone 复制一个新的 keywords
-// updatedWords: 需要更新的关键词列表，由于从数据库中获取数据常常是数组的方式
+// updatedWords: 需要更新的关键词列表，由于从数据库中获取数据常常是数组的方式.
 func (words Keywords) Clone(updatedWords []*Keyword) Keywords {
 	newKeywords := Keywords{}
 
@@ -53,12 +53,11 @@ func (words Keywords) Clone(updatedWords []*Keyword) Keywords {
 
 	// 替换掉需要更新的字段，这里用的是深拷贝
 	for _, word := range updatedWords {
-		newKeywords[word.word] = word.Clone() //深拷贝
+
 	}
 
 	return newKeywords
 }
 
 func main() {
-
 }

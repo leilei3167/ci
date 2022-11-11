@@ -1,10 +1,9 @@
 package main
 
 func main() {
-
 }
 
-type scanStrategy interface { //定义扫描策略
+
 	Start() string
 }
 
