@@ -10,7 +10,6 @@ output:
 linters:
   disable-all: true # 设置为全部关闭,只开启我们想要设置的linter
   enable:
-    - errcheck
     - gosimple
     - govet
     - ineffassign
@@ -24,7 +23,7 @@ linters:
     - gofumpt # 检查是否被gofumpt格式化过
     - gocritic # 更严格代码检查
     - cyclop # 代码圈复杂度,最好在10以下
-    - godot # 注释规范
+
     #- lll # 单行长度限制
     - revive # 更严格代码检查
 
